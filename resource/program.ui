@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AkashiAssetConfigEditor</class>
+ <widget class="QMainWindow" name="AkashiAssetConfigEditor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Akashi Asset Config Editor</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="configList">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>521</width>
+      <height>555</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tabbackgrounds">
+     <attribute name="title">
+      <string>backgrounds.txt</string>
+     </attribute>
+     <widget class="QTreeWidget" name="treebackgrounds">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>515</width>
+        <height>526</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="columnCount">
+       <number>2</number>
+      </property>
+      <attribute name="headerVisible">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string notr="true">1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string notr="true">2</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabcharacters">
+     <attribute name="title">
+      <string>characters.txt</string>
+     </attribute>
+     <widget class="QTreeWidget" name="treecharacters">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>515</width>
+        <height>526</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="columnCount">
+       <number>2</number>
+      </property>
+      <attribute name="headerVisible">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string notr="true">1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string notr="true">2</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabmusictxt">
+     <attribute name="title">
+      <string>music.txt</string>
+     </attribute>
+     <widget class="QTreeWidget" name="treemusictxt">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>515</width>
+        <height>526</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="columnCount">
+       <number>2</number>
+      </property>
+      <attribute name="headerVisible">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string notr="true">1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string notr="true">2</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabmusicjson">
+     <attribute name="title">
+      <string>music.json</string>
+     </attribute>
+     <widget class="QTreeWidget" name="treemusicjson">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>515</width>
+        <height>526</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="columnCount">
+       <number>2</number>
+      </property>
+      <attribute name="headerVisible">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string notr="true">1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string notr="true">2</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="animbgLabel">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>0</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="animbgList">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>200</y>
+      <width>261</width>
+      <height>24</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="chariconLabel">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>420</y>
+      <width>80</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>800</width>
+      <height>600</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clearconfigButton">
+    <property name="geometry">
+     <rect>
+      <x>529</x>
+      <y>230</y>
+      <width>91</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clear config</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="createconfigButton">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>230</y>
+      <width>171</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Create config from base folder</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="musictxt2jsonButton">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>260</y>
+      <width>91</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>music.txt2json</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="musicjson2txtButton">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>290</y>
+      <width>91</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>music.json2txt</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="getlengthsButton">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>260</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Get lengths</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="playButton">
+    <property name="geometry">
+     <rect>
+      <x>749</x>
+      <y>260</y>
+      <width>41</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Play</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stopButton">
+    <property name="geometry">
+     <rect>
+      <x>749</x>
+      <y>290</y>
+      <width>41</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lengthLine">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>320</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Length...</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="getlengthButton">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>290</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Get length</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="deleteButton">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>320</y>
+      <width>51</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addCategoryButton">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>320</y>
+      <width>91</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Category</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="searchLine">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>350</y>
+      <width>261</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Search...</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="filepanel">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen_config_folder"/>
+    <addaction name="actionOpen_base_folder"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <addaction name="filepanel"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen_config_folder">
+   <property name="text">
+    <string>Open config folder</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionOpen_base_folder">
+   <property name="text">
+    <string>Open base folder</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
