@@ -1,0 +1,152 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+        
+  Linux:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install qt5-default libqt5websockets5-dev g++ make
+          cd $GITHUB_WORKSPACE
+          mkdir lib
+          mkdir bin
+          curl http://www.un4seen.com/files/bass24-linux.zip -o bass.zip
+          unzip -d bass -o bass.zip
+          cp ./bass/libs/x86_64/libbass.so ./lib/
+          cp ./bass/libs/x86_64/libbass.so ./bin/
+          curl http://www.un4seen.com/files/bassmidi24-linux.zip -o bassmidi.zip
+          unzip -d bass -o bassmidi.zip
+          cp ./bass/libs/x86_64/libbassmidi.so ./lib/
+          cp ./bass/libs/x86_64/libbassmidi.so ./bin/
+          curl http://www.un4seen.com/files/bassopus24-linux.zip -o bassopus.zip
+          unzip -d bass -o bassopus.zip
+          cp ./bass/libs/x86_64/libbassopus.so ./lib/
+          cp ./bass/libs/x86_64/libbassopus.so ./bin/
+
+      - name: Build
+        run: |
+          cd $GITHUB_WORKSPACE
+          qmake
+          make
+          mv ./scripts/run.sh ./bin/run.sh
+          
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: aace-linux
+          path: bin/
+
+  Windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+      
+      - name: Cache Qt
+        id: cache-qt
+        uses: actions/cache@v1
+        with:
+          path: ../Qt
+          key: ${{ runner.os }}-QtCache
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+
+      - name: Install dependencies
+        run: |
+          cd $Env:GITHUB_WORKSPACE
+          mkdir "lib"
+          mkdir "bin"
+          curl http://www.un4seen.com/files/bass24.zip -o bass.zip
+          unzip -d bass -o bass.zip
+          cp ./bass/c/x64/bass.lib ./lib/
+          cp ./bass/x64/bass.dll ./bin/
+          curl http://www.un4seen.com/files/bassmidi24.zip -o bassmidi.zip
+          unzip -d bass -o bassmidi.zip
+          cp ./bass/c/x64/bassmidi.lib ./lib/
+          cp ./bass/x64/bassmidi.dll ./bin/
+          curl http://www.un4seen.com/files/bassopus24.zip -o bassopus.zip
+          unzip -d bass -o bassopus.zip
+          cp ./bass/c/x64/bassopus.lib ./lib/
+          cp ./bass/x64/bassopus.dll ./bin/
+
+      - name: Build
+        run: |
+          cd $Env:GITHUB_WORKSPACE
+          qmake "CONFIG += qtquickcompiler" aace.pro
+          nmake
+          windeployqt bin\aace.exe --release --no-opengl-sw
+
+      - name: Upload zip
+        uses: actions/upload-artifact@v2
+        with:
+          name: aace-windows
+          path: bin\
+
+  MacOS:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - uses: actions/setup-python@master
+      with:
+        python-version: '3.10'
+
+    - name: Setup Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        host: 'mac'
+        version: '5.15.2'
+        arch: 'clang_64'
+
+    - name: Install dependencies
+      run: |
+          cd $GITHUB_WORKSPACE
+          mkdir lib
+          mkdir bin
+          curl http://www.un4seen.com/files/bass24-osx.zip -o bass.zip
+          unzip -d bass -o bass.zip
+          cp ./bass/libbass.dylib ./lib/
+          cp ./bass/libbass.dylib ./
+          curl http://www.un4seen.com/files/bassmidi24-osx.zip -o bassmidi.zip
+          unzip -d bass -o bassmidi.zip
+          cp ./bass/libbassmidi.dylib ./lib/
+          cp ./bass/libbassmidi.dylib ./
+          curl http://www.un4seen.com/files/bassopus24-osx.zip -o bassopus.zip
+          unzip -d bass -o bassopus.zip
+          cp ./bass/libbassopus.dylib ./lib/
+          cp ./bass/libbassopus.dylib ./
+
+    - name: Build
+      run: |
+          cd $GITHUB_WORKSPACE
+          qmake
+          make
+          macdeployqt ./bin/aace.app
+          mv *.dylib ./bin/aace.app/Contents/Frameworks/
+          install_name_tool -change @loader_path/libbass.dylib @rpath/libbass.dylib ./bin/aace.app/Contents/MacOS/aace
+          install_name_tool -change @loader_path/libbassopus.dylib @rpath/libbassopus.dylib ./bin/aace.app/Contents/MacOS/aace
+          install_name_tool -change @loader_path/libbassmidi.dylib @rpath/libbassmidi.dylib ./bin/aace.app/Contents/MacOS/aace
+
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+          name: aace-macos
+          path: bin/
